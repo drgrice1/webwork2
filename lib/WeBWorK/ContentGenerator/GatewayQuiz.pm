@@ -1856,23 +1856,23 @@ sub body {
 		}
 	}
 
-	##### remaining output of test headers:
-	##### display timer or information about elapsed time, "printme" link,
-	##### and information about any recorded score if not submitAnswers or
-	##### checkAnswers
+	# Remaining output of test headers:
+	# Display timer or information about elapsed time, "printme" link,
+	# and information about any recorded score if not submitAnswers or
+	# checkAnswers.
 	if ($can{recordAnswersNextTime}) {
 
-		# print timer
-		my $timeLeft = $set->due_date() - $timeNow;  # this is in secs
-		# dont print the timer if there is over 24 hours because its kind of silly
+		my $timeLeft = $set->due_date() - $timeNow;  # This is in seconds
+		# Print the timer if there is less than 24 hours left.
 		if ($timeLeft < 86400) {
-			print CGI::div({-id=>"gwTimer"},"\n");
-			print CGI::start_form({-name=>"gwTimeData", -method=>"POST", -action=>$r->uri});
-			print CGI::hidden({-name=>"serverTime", -value=>$timeNow}), "\n";
-			print CGI::hidden({-name=>"serverDueTime", -value=>$set->due_date()}), "\n";
-			print CGI::end_form();
+			print CGI::div({
+					id => "gwTimer",
+					data_server_time => $timeNow,
+					data_server_due_time => $set->due_date(),
+					data_acting => $user ne $effectiveUser
+				}, "");
 		}
-		if ($timeLeft < 1 && $timeLeft > 0 &&
+		if ($timeLeft < 60 && $timeLeft > 0 &&
 			!$authz->hasPermissions($user, "record_answers_when_acting_as_student")) {
 			print CGI::span({-class=>"resultsWithError"},
 				CGI::b($r->maketext("You have less than 1 minute to complete this test.")."\n"));
@@ -1999,7 +1999,7 @@ sub body {
 		for my $i (0 .. $#pg_results) {
 			my $pn = $i + 1;
 			if ($i >= $startProb && $i <= $endProb) {
-				push(@$probRow, CGI::a({-href=>"#", -onclick => "jumpTo($pn);return false;"}, $pn));
+				push(@$probRow, CGI::a({ href => "#", class => 'problem-jump-link', data_problem_number => $pn}, $pn));
 			} else {
 				push(@$probRow, $pn);
 			}

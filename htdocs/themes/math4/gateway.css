@@ -35,6 +35,12 @@ div#gwTimer {
 
 } 
 
+.quiz-alert-dialog .modal-body {
+	text-align: center;
+	background-color: #d69191 !important;
+	font-weight: bold;
+}
+
 div#gwScoreSummary {
 	background-color:#ffeeaa;
 	color: black;

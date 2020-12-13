@@ -1,113 +1,138 @@
 /***********************************************************
  *
- * Javascript for gateway tests.  
+ * Javascript for gateway tests.
  *
  * This file includes the routines allowing navigation
- * within gateway tests, manages the timer, and posts 
+ * within gateway tests, manages the timer, and posts
  * alerts when test time is winding up.
  *
- * The code here relies heavily on the existence of form elements 
- * created by GatewayQuiz.pm
+ * The timer code relies on the existence of data attributes for
+ * the gwTimer div created by GatewayQuiz.pm
  *
  ***********************************************************/
 
-function jumpTo(ref) {  // scrolling javascript function
-	if ( ref ) {
-		var pn = ref - 1; // we start anchors at 1, not zero
+$(function() {
+	// Gateway timer
+	var timerDiv = $('#gwTimer'); // The timer div element
+	var timeDelta; // The difference between the browser time and the server time
+	var serverDueTime; // The time the test is due
+	var timerUpdateInterval;
+	var alertCheckInterval;
 
-		$('html, body').animate({
-			scrollTop: $("#prob"+pn).offset().top
-		}, 500);
-		$("#prob"+pn).attr('tabIndex',-1).focus();
-	}
-	return false; // prevent link from being followed
-}
+	// Initializing the time variables and start the timer.
+	function runtimer() {
+		if (!timerDiv.length) return;
 
-// timer for gateway 
-var theTimer;		// variable for the timer
-var browserTime;	// on load, the time on the client's computer
-var serverTime;		// on load, the time on the server
-var timeDelta;		// the difference between those
-var serverDueTime;	// the time the test is due
-
-function runtimer() {
-	// function to start the timer, initializing the time variables
-	if ( document.getElementById('gwTimer') == null ) {  // no timer
-		return;
-	} else {
-		theTimer = document.getElementById('gwTimer');
 		var dateNow = new Date();
-		browserTime = Math.round(dateNow.getTime()/1000);
-		serverTime = document.gwTimeData.serverTime.value;
-		serverDueTime = document.gwTimeData.serverDueTime.value;
-		timeDelta = browserTime - serverTime;
+		var browserTime = Math.round(dateNow.getTime() / 1000);
+		serverDueTime = timerDiv.data('server-due-time');
+		timeDelta = browserTime - timerDiv.data('server-time');
 
-		var remainingTime = serverDueTime - browserTime + 1.*timeDelta;
+		var remainingTime = serverDueTime - browserTime + timeDelta;
 
-		if ( remainingTime >= 0 ) {
-			theTimer.innerHTML = "Remaining time: " + toMinSec(remainingTime) + " (min:sec)";
-			setTimeout(updateTimer, 1000);
-			setTimeout(checkAlert, 1000);
+		if (!timerDiv.data('acting')) {
+			if (remainingTime < 5)
+				// Submit the test if time is expired.
+				document.gwquiz.submitAnswers.click();
+			else
+				// Start the alert check routine
+				alertCheckInterval = setInterval(checkAlert, 5000);
+		}
+
+		// Start the timer
+		if (remainingTime >= 0) {
+			timerDiv.text("Remaining time: " + formatTime(remainingTime));
+			timerUpdateInterval = setInterval(updateTimer, 1000);
 		} else {
-			theTimer.innerHTML = "Remaining time: 0 min";
+			timerDiv.text("Remaining time: 00:00:00");
 		}
 	}
-}
 
-function updateTimer() {
-	// update the timer 
-	var dateNow = new Date();
-	browserTime = Math.round(dateNow.getTime()/1000);
-	var remainingTime = serverDueTime - browserTime + 1.*timeDelta;
-	if ( remainingTime >= 0 ) {
-		theTimer.innerHTML = "Remaining time: " + toMinSec(remainingTime) + " (min:sec)";
-		setTimeout(updateTimer, 1000);
+	// Update the timer
+	function updateTimer() {
+		var dateNow = new Date();
+		var browserTime = Math.round(dateNow.getTime() / 1000);
+		var remainingTime = serverDueTime - browserTime + timeDelta;
+		if (remainingTime >= 0) {
+			timerDiv.text("Remaining time: " + formatTime(remainingTime));
+		} else {
+			timerDiv.text("Remaining time: 00:00:00");
+			clearInterval(timerUpdateInterval);
+		}
 	}
-}
 
-function checkAlert() { 
-	// check to see if we should put up a low time alert
-	var dateNow = new Date();
-	browserTime = Math.round(dateNow.getTime()/1000);
-	var timeRemaining = serverDueTime - browserTime + 1.*timeDelta;
+	function alertDialog(message) {
+		// If a previous dialog is still open, then close it first.
+		if (alertDialog.msgDialog) alertDialog.msgDialog.modal("hide");
+		alertDialog.msgDialog = $('<div class="modal quiz-alert-dialog" tabindex="-1" data-keyboard="true" role="dialog" aria-label="quiz alert dialog">' +
+			'<div class="modal-header">' +
+			'<button type="button" class="close" data-dismiss="modal" aria-label="close">' +
+			'<span aria-hidden="true">&times;</span>' +
+			'</button>' +
+			'<h3>Test Time Notification</h3>' +
+			'</div>' +
+			'<div class="modal-body">' + message + '</div>' +
+			'<div class="modal-footer"><button type="button" class="btn" data-dismiss="modal" aria-hidden="true">Ok</button></div>' +
+			'</div>');
+		alertDialog.msgDialog.on('hidden', function() { alertDialog.msgDialog.remove(); delete alertDialog.msgDialog; })
+		alertDialog.msgDialog.modal('show');
+	}
 
-	if ( timeRemaining <= 0 ) {
-		alert("* You are out of time! *\n" + 
-			"* Press grade now!     *");
-	} else if ( timeRemaining <= 45 && timeRemaining > 40 ) {
-		alert("* You have less than 45 seconds left! *\n" + 
-			"*      Press Grade very soon!         *");
-	} else if ( timeRemaining <= 90 && timeRemaining > 85 ) {
-		alert("* You only have less than 90 sec left to complete  *\n" + 
-			"* this assignment. You should finish it very soon! *");
-	}
-	if ( timeRemaining > 0 ) {
-		setTimeout(checkAlert, 5000);
-	}
-}
+	// Check to see if we should put up a low time alert.  This also submits the test if
+	// time is expired.
+	function checkAlert() {
+		var dateNow = new Date();
+		var browserTime = Math.round(dateNow.getTime() / 1000);
+		var timeRemaining = serverDueTime - browserTime + timeDelta;
 
-function toMinSec(t) {
-	// convert to min:sec
-	if ( t < 0 ) {     // don't deal with negative times
-		t = 0;
+		if (timeRemaining <= -5) {
+			// If a dialog is still open, then close it first or it prevents the form from
+			// being submitted.
+			if (alertDialog.msgDialog) {
+				alertDialog.msgDialog.modal("hide");
+				delete alertDialog.msgDialog;
+			}
+			document.gwquiz.submitAnswers.click();
+			clearInterval(alertCheckInterval);
+		} else if (timeRemaining <= 0 && timeRemaining > -5) {
+			alertDialog('You are out of time!<br>Press "Grade Test" now!');
+		} else if (timeRemaining <= 45 && timeRemaining > 40) {
+			alertDialog('You have less than 45 seconds left!<br>Press "Grade Test" soon!');
+		} else if (timeRemaining <= 90 && timeRemaining > 85) {
+			alertDialog("You have less than 90 seconds left to complete<br>" +
+				"this assignment. You should finish it soon!");
+		}
 	}
-	mn = Math.floor(t/60);
-	sc = t - 60*mn;
-	if ( mn < 10 && mn > -1 ) {
-		mn = "0" + mn;
-	}
-	if ( sc < 10 ) {
-		sc = "0" + sc;
-	}
-	return mn + ":" + sc;
-}
 
-// Start timer after the DOM is ready
-$(setTimeout(runtimer, 500));
+	// Convert seconds to hh:mm:ss format
+	function formatTime(t) {
+		// Don't deal with negative times.
+		if (t < 0) t = 0;
+		var date = new Date(0);
+		date.setSeconds(t);
+		return date.toISOString().substr(11, 8);
+	}
 
-// Clear out the achievement model if there is one
-$(window).on("load", function() {
-	$('#achievementModal').modal('show');
-	setTimeout(function(){$('#achievementModal').modal('hide');},8000);
+	// Start the test timer.
+	setTimeout(runtimer, 500);
+
+	// Scroll to a problem when the problem number link is clicked.
+	$(".problem-jump-link").click(
+		function(e) {
+			var ref = $(this).data("problem-number");
+			if (ref) {
+				var pn = ref - 1; // we start anchors at 1, not zero
+				$('html, body').animate({ scrollTop: $("#prob" + pn).offset().top }, 500);
+				$("#prob" + pn).attr('tabIndex', -1).focus();
+			}
+			e.preventDefault() // Prevent the link from being followed.
+		}
+	);
 });
 
+$(window).on("load", function() {
+	// Show achievements if any.
+	$('#achievementModal').modal('show');
+	// Clear the achievements after 8 seconds.
+	setTimeout(function() { $('#achievementModal').modal('hide'); }, 8000);
+});
