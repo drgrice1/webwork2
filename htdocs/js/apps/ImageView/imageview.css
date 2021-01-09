@@ -3,7 +3,7 @@
 .image-view-dialog.modal { padding: 0 !important; }
 
 .image-view-dialog .modal-body {
-	overflow: auto;
+	overflow: visible;
 	padding: 8px;
 	text-align: center;
 	box-sizing: content-box !important;

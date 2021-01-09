@@ -231,4 +231,12 @@
 		// Stop the mutation observer when the window is closed.
 		window.addEventListener('unload', function() { observer.disconnect(); });
 	});
+
+	document.addEventListener('tikzjax-load-finished', function(e) {
+		var elt = e.srcElement.tagName == 'svg' ? e.srcElement : e.srcElement.firstChild;
+		elt.classList.add('image-view-elt');
+		elt.setAttribute('tabindex', '0');
+		elt.setAttribute('role', 'button');
+		$(elt).on('click.ImageView', imageViewDialog).on('keydown.ImageView', keyHandler);
+	});
 })();
