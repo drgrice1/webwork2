@@ -501,7 +501,7 @@ sub browse_local_panel {
 				{ for => 'library_sets', class => 'col-form-label-sm' },
 				$r->maketext(
 					"[_1] Problems:",
-					$lib eq '' ? $r->maketext('Local') : Encode::decode("UTF-8", $problib{$lib})
+					$lib eq '' ? $r->maketext('Local') : $problib{$lib}
 				)
 			),
 			CGI::popup_menu({
@@ -1155,7 +1155,7 @@ sub make_top_row {
 	foreach my $lib (sort(keys(%problib))) {
 		$libs .= CGI::submit({
 			name  => "browse_$lib",
-			value => Encode::decode("UTF-8", $problib{$lib}),
+			value => $problib{$lib},
 			class => 'btn btn-secondary btn-sm ms-2 mb-2',
 			($browse_which eq "browse_$lib") ? (disabled => undef) : ()
 		})
