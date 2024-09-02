@@ -540,7 +540,7 @@ msgid ""
 "the new problem</i> (assuming hints exist).</li></ul>Note: There is very "
 "little point enabling the Show Me Another feature unless you check at least "
 "one of these options. Otherwise the students would simply see a new version "
-"that can not be attempted or learned from."
+"that can not be attempted or learnt from."
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ConfigValues.pm:779
@@ -592,7 +592,7 @@ msgstr ""
 #: /opt/webwork/webwork2/templates/HelpFiles/InstructorAchievementEditor.html.ep:56
 msgid ""
 "A hash reference in which the keys are the achievement_id's assigned to the "
-"current user and the values are 0 or 1 which stores if the user has earned "
+"current user and the values are 0 or 1 which stores if the user has earnt "
 "the associated achievement or not."
 msgstr ""
 
@@ -1154,14 +1154,14 @@ msgstr ""
 #. ($badAddr)
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/CourseAdmin.pm:1676
 msgid ""
-"Address(es) %1 is(are) not in a recognized form.  Please check your data "
+"Address(es) %1 is(are) not in a recognised form.  Please check your data "
 "entry and resubmit."
 msgstr ""
 
 #. ($badAddr)
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/CourseAdmin.pm:1991
 msgid ""
-"Address(es) %1 is(are) not in a recognized form.  Please check your data "
+"Address(es) %1 is(are) not in a recognised form.  Please check your data "
 "entry and try again."
 msgstr ""
 
@@ -1242,7 +1242,7 @@ msgstr ""
 
 #. ($c->formatDateTime($set->due_date, $ce->{studentDateDisplayFormat})
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/ProblemSets.pm:172
-msgid "Afterward reduced credit can be earned until %1."
+msgid "Afterward reduced credit can be earnt until %1."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/SetMaker/browse_library_panel_advanced.html.ep:26
@@ -1396,7 +1396,7 @@ msgstr ""
 #: /opt/webwork/webwork2/templates/HelpFiles/instructor_links.html.ep:82
 msgid ""
 "Allows configuration of certain parameters, such as permission levels, "
-"default display mode for equations, and email feedback behavior, on a course "
+"default display mode for equations, and email feedback behaviour, on a course "
 "by course basis."
 msgstr ""
 
@@ -1437,7 +1437,7 @@ msgid ""
 "An achievement evaluator is a perl script that is run after each problem is "
 "submitted which returns a truth value of 0 (didn't earn) or 1 (earn). The "
 "evaluator is given access to different variables which contain data about "
-"the problem and set that is used to determine if the achievement is earned "
+"the problem and set that is used to determine if the achievement is earnt "
 "or not."
 msgstr ""
 
@@ -2412,7 +2412,7 @@ msgstr ""
 #: /opt/webwork/webwork2/templates/HelpFiles/InstructorConfig.html.ep:24
 msgid ""
 "Click on each of the tabs to view the configuration items. The question mark "
-"icon provides access to information about the behavior of the configuration "
+"icon provides access to information about the behaviour of the configuration "
 "settings."
 msgstr ""
 
@@ -2567,7 +2567,7 @@ msgstr ""
 #: /opt/webwork/webwork2/lib/WeBWorK/ConfigValues.pm:326
 msgid ""
 "Comma separated list of set names that are excluded from all achievements. "
-"No achievement points and badges can be earned for submitting problems in "
+"No achievement points and badges can be earnt for submitting problems in "
 "these sets. Note that underscores (_) must be used for spaces in set names."
 msgstr ""
 
@@ -2644,7 +2644,7 @@ msgid "Confirm which sets to export."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/AchievementEvaluator/cheevoMessage.html.ep:15
-msgid "Congratulations, you earned a new level!"
+msgid "Congratulations, you earnt a new level!"
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/Config.pm:116
@@ -3260,7 +3260,7 @@ msgid "Deselect All Test Versions"
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/SendMail.pm:345
-msgid "Didn't recognize action"
+msgid "Didn't recognise action"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/FileManager.html.ep:27
@@ -3437,7 +3437,7 @@ msgstr ""
 
 #. ($saveMode)
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/AchievementEditor.pm:303
-msgid "Don't recognize saveMode: |%1|. Unknown error."
+msgid "Don't recognise saveMode: |%1|. Unknown error."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/CourseAdmin/rename_course_confirm.html.ep:79
@@ -3844,7 +3844,7 @@ msgstr ""
 
 #: /opt/webwork/webwork2/templates/HelpFiles/InstructorSendMail.html.ep:28
 msgid ""
-"Emails can contain personalized data, such as name, section, or status.  "
+"Emails can contain personalised data, such as name, section, or status.  "
 "Click \"List of insertable macros\" for a full list available variables.  "
 "Additional personal data can be included by using a merge file.  A merge "
 "file is a CSV file located in the [Scoring] directory in which the first "
@@ -3852,7 +3852,7 @@ msgid ""
 "grades).  This data is identified by which column it is in, for instance if "
 "the scores where in the 4th column of the merge file, insert them into an "
 "email using the variable $COL[4].  The \"Scoring Tools\" page can export "
-"grades into a CSV that can be used as a merge file.  Upload customized merge "
+"grades into a CSV that can be used as a merge file.  Upload customised merge "
 "files with the \"File Manager\"."
 msgstr ""
 
@@ -3962,7 +3962,7 @@ msgid "Enrollment Status: %1"
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ConfigValues.pm:749
-msgid "Enter Key Behavior"
+msgid "Enter Key Behaviour"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/HelpFiles/InstructorUserList.html.ep:69
@@ -4618,7 +4618,7 @@ msgstr ""
 msgid ""
 "From this page you can <strong>add new students</strong>, <strong>edit</"
 "strong> user data (name, email address, recitation, section, permission "
-"level, enrollment status, and password), and <strong>export</strong> (save) "
+"level, enrolment status, and password), and <strong>export</strong> (save) "
 "class lists for back-up or use in another course. You can also delete "
 "students from the class roster, but this cannot be undone."
 msgstr ""
@@ -4893,7 +4893,7 @@ msgid ""
 "Here is a list of the variables the evaluator has access to. Unless "
 "indicated, changes to the variables will not be saved.  Evaluators are run "
 "in the same order they are listed on the achievement editor page and are "
-"only run if the achievement has not been earned. Keep this in mind when "
+"only run if the achievement has not been earnt. Keep this in mind when "
 "using persistent global data."
 msgstr ""
 
@@ -7202,7 +7202,7 @@ msgid ""
 "Preview the message before sending using the \"Preview Message\" button.  "
 "The preview shows the email that would be sent to the first selected student "
 "or the instructor if no students were selected.  The preview will also list "
-"all of the students that would receive their own personalized message.  If a "
+"all of the students that would receive their own personalised message.  If a "
 "merge file was selected, the preview will also indicate which (if any) "
 "recipient's merge file data could not be found."
 msgstr ""
@@ -7466,16 +7466,16 @@ msgid "RECITATION"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/SetMaker/problem_row.html.ep:199
-msgid "Randomize"
+msgid "Randomise"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/PGProblemEditor/hardcopy_form.html.ep:13
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/PGProblemEditor/view_form.html.ep:14
-msgid "Randomize Seed"
+msgid "Randomise Seed"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/ProblemSetDetail.html.ep:355
-msgid "Randomize Seeds"
+msgid "Randomise Seeds"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/AchievementUserEditor.html.ep:96
@@ -7550,7 +7550,7 @@ msgstr ""
 
 #. ($c->formatDateTime($set->due_date, $ce->{studentDateDisplayFormat})
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/ProblemSets.pm:182
-msgid "Reduced credit can still be earned until %1."
+msgid "Reduced credit can still be earnt until %1."
 msgstr ""
 
 # Short for "Reduced Scoring:"
@@ -7718,7 +7718,7 @@ msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/AchievementItems/ResurrectHW.pm:29
 msgid ""
-"Reopens one closed homework set for 24 hours and rerandomizes all problems."
+"Reopens one closed homework set for 24 hours and rerandomises all problems."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/HelpFiles/InstructorProblemSetDetail.html.ep:116
@@ -7839,7 +7839,7 @@ msgid "Required"
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetDetail.pm:541
-msgid "Rerandomize After"
+msgid "Rerandomise After"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/SetMaker/browse_library_panel_advanced.html.ep:104
@@ -8815,7 +8815,7 @@ msgid ""
 "must be problem set specific. For example, <code>webwork.myschool.edu/"
 "webwork2/course-name/problem_set_name</code>. If the problem set name has "
 "space characters, they should be underscores in these addresses. Also, to "
-"initialize the communication between WeBWorK and the LMS, the user must "
+"initialise the communication between WeBWorK and the LMS, the user must "
 "follow each of these external learning tools at least one time. Since there "
 "must be a separate external tool link for each problem set, this option "
 "requires more maintenance of the LMS course.</dd></dl>"
@@ -8984,7 +8984,7 @@ msgid ""
 "button is used, the filters will be applied in sequence, narrowing the "
 "results list.  If the \"Union\" button is used, the updated list will be the "
 "union of all results lists from the multiple filters.The table below will "
-"list the past answers colored according to correctness (green is correct).  "
+"list the past answers coloured according to correctness (green is correct).  "
 "Use control + click to select multiple users, sets, or problems."
 msgstr ""
 
@@ -9630,8 +9630,8 @@ msgid ""
 "The \"Score\" tab will export achievement data to a CSV file that can be "
 "downloaded.  The export contains the global data including number of "
 "achievement points and current level of each student.  In addition for each "
-"selected achievement, a column for if the achievement was earned (1) or not "
-"earned (0) will be added to the CSV."
+"selected achievement, a column for if the achievement was earnt (1) or not "
+"earnt (0) will be added to the CSV."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/HelpFiles/InstructorUserList.html.ep:206
@@ -9702,7 +9702,7 @@ msgstr ""
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/SetMaker/problem_row.html.ep:78
 msgid ""
 "The Status figure is the global average of the Status individuals have "
-"earned on this problem. The Status is the percentage correct (from 0% to "
+"earnt on this problem. The Status is the percentage correct (from 0% to "
 "100%) recorded for the problem.  A low figure may  represent a difficult "
 "problem.  The Status is often fairly high since  many students will work on "
 "a problem until they get it correct or nearly so."
@@ -9711,7 +9711,7 @@ msgstr ""
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/SetMaker/problem_row.html.ep:138
 msgid ""
 "The Status figure is the local average of the Status individuals at your "
-"institution have earned on this problem. The Status is the percentage "
+"institution have earnt on this problem. The Status is the percentage "
 "correct (from 0% to 100%) recorded for the problem.  A low figure may  "
 "represent a difficult problem.  The Status is often fairly high since  many "
 "students will work on a problem until they get it correct or nearly so."
@@ -9731,7 +9731,7 @@ msgstr ""
 #: /opt/webwork/webwork2/templates/HelpFiles/InstructorAchievementList.html.ep:135
 msgid ""
 "The achievement evaluator is the perl code that is run after each submit to "
-"determine if an achievement is earned or not.  Click on the \"Edit "
+"determine if an achievement is earnt or not.  Click on the \"Edit "
 "Evaluator\" link to edit the evaluator."
 msgstr ""
 
@@ -9899,7 +9899,7 @@ msgid ""
 "successfully completed. If a job is \"failed\" it means that the execution "
 "of job has completed, but there were errors in the execution of the job. If "
 "the job is in the \"finished\" or \"failed\" state, then there will also be "
-"a button which when clicked will show a dialog containing information about "
+"a button which when clicked will show a dialogue containing information about "
 "what happened when the job was executed."
 msgstr ""
 
@@ -9915,7 +9915,7 @@ msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ConfigValues.pm:479
 msgid ""
-"The default number of attempts before the problem is re-randomized. ( 0 => "
+"The default number of attempts before the problem is re-randomised. ( 0 => "
 "never )"
 msgstr ""
 
@@ -10222,7 +10222,7 @@ msgstr ""
 #: /opt/webwork/webwork2/templates/HelpFiles/InstructorPGProblemEditor.html.ep:90
 msgid ""
 "The key maps that are available are \"default\", \"emacs\", \"sublime\", and "
-"\"vim\". The \"default\" key map has the standard behavior of a browser text "
+"\"vim\". The \"default\" key map has the standard behaviour of a browser text "
 "area. You can use Ctrl-C to copy, Ctrl-V to paste, Ctrl-F to search, etc. If "
 "you are more comfortable with the \"emacs\", \"sublime\", or \"vim\" text "
 "editors then you may choose to use one of those key maps instead."
@@ -10301,7 +10301,7 @@ msgid "The notification for %1 has been changed to \"%2\"."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/HelpFiles/InstructorAchievementList.html.ep:63
-msgid "The number of points earned for earning the achievement."
+msgid "The number of points earnt for earning the achievement."
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/File/SetDef.pm:351
@@ -11038,7 +11038,7 @@ msgid ""
 "the achievement by unchecking a student's name (note all data will be "
 "deleted).  To unassign the achievement from all users, first select \"Allow "
 "unassign\" and then click the \"Unassign from All Users\" button. You can "
-"also toggle the earned status with the checkbox in the \"Earned\" column and "
+"also toggle the earnt status with the checkbox in the \"Earned\" column and "
 "edit the achievement counter for counting achievements."
 msgstr ""
 
@@ -11203,7 +11203,7 @@ msgid ""
 "from <a href=\"https://metacpan.org/pod/DateTime#strftime-"
 "Patterns\">strftime patterns</a>, e.g., <span class=\"text-nowrap\">\"%a %b "
 "%d at %l:%M%P\"</span>, or can be one of the <a href=\"https://metacpan.org/"
-"pod/DateTime::Locale::FromData\">localizable formats</a> "
+"pod/DateTime::Locale::FromData\">localisable formats</a> "
 "\"datetime_format_short\", \"datetime_format_medium\", "
 "\"datetime_format_long\", or \"datetime_format_full\"."
 msgstr ""
@@ -11303,7 +11303,7 @@ msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ConfigValues.pm:1006
 msgid ""
-"This must be set in order to utilize LTI content selection. The WeBWorK "
+"This must be set in order to utilise LTI content selection. The WeBWorK "
 "content item URL must be set for the external tool in the LMS first. Then if "
 "content selection from the LMS is attempted, you will be shown the LMS "
 "context ID. Enter the context ID shown here, and then you will be able to "
@@ -11313,7 +11313,7 @@ msgstr ""
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetDetail.pm:562
 msgid ""
 "This number is used to control how the random elements of the problem will "
-"be generated. Change this number to rerandomize a student's version."
+"be generated. Change this number to rerandomise a student's version."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/PGProblemEditor/format_code_form.html.ep:23
@@ -11375,15 +11375,15 @@ msgstr ""
 #: /opt/webwork/webwork2/templates/HelpFiles/InstructorConfig.html.ep:20
 msgid ""
 "This page allows you to configure course settings such as permission levels, "
-"display modes allowed, default display mode, email feedback behavior, and "
+"display modes allowed, default display mode, email feedback behaviour, and "
 "much more."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/HelpFiles/Achievements.html.ep:20
 msgid ""
-"This page displays a student's current achievement level and progress toward "
+"This page displays a student's current achievement level and progress towards "
 "the next level, and lists the rewards and badges that the student has "
-"earned. If rewards have been earned, then the student may also redeem those "
+"earnt. If rewards have been earnt, then the student may also redeem those "
 "rewards."
 msgstr ""
 
@@ -11481,7 +11481,7 @@ msgstr ""
 #. ($show_user_id)
 #: /opt/webwork/webwork2/lib/WeBWorK/Authen/Proctor.pm:161
 msgid ""
-"This quiz requires a grade proctor to start, and user %1 is not authorized "
+"This quiz requires a grade proctor to start, and user %1 is not authorised "
 "to proctor test grade submissions in this course."
 msgstr ""
 
@@ -11544,7 +11544,7 @@ msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/LoginProctor.html.ep:74
 msgid ""
-"This set has a set-level proctor password to authorize logins. Enter the "
+"This set has a set-level proctor password to authorise logins. Enter the "
 "password below."
 msgstr ""
 
@@ -11575,7 +11575,7 @@ msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetDetail.pm:203
 msgid ""
-"This set will be unavailable to students until they have earned the \"Score "
+"This set will be unavailable to students until they have earnt the \"Score "
 "Required for Release\" on the sets specified in this field.  The sets should "
 "be written as a comma separated list."
 msgstr ""
@@ -12308,12 +12308,12 @@ msgstr ""
 #. ($show_user_id)
 #: /opt/webwork/webwork2/lib/WeBWorK/Authen/Proctor.pm:133
 msgid ""
-"User %1 is not authorized to proctor test grade submissions in this course."
+"User %1 is not authorised to proctor test grade submissions in this course."
 msgstr ""
 
 #. ($show_user_id)
 #: /opt/webwork/webwork2/lib/WeBWorK/Authen/Proctor.pm:167
-msgid "User %1 is not authorized to proctor test logins in this course."
+msgid "User %1 is not authorised to proctor test logins in this course."
 msgstr ""
 
 #. ($userID)
@@ -12879,7 +12879,7 @@ msgid ""
 "may or may not receive feedback right away depending upon other settings.  "
 "Also a \"Test\" can have a time limit, where the student needs to start "
 "between the open date and the close date, but once started has only so much "
-"time.  Also a \"Test\" can be configured to allow taking new, re-randomized "
+"time.  Also a \"Test\" can be configured to allow taking new, re-randomised "
 "versions.  A \"Proctored Test\" is the same as a \"Test\", but in order to "
 "begin, either a classwide password specific to this set is needed, or a "
 "higher level user must enter their username and password on the student's "
@@ -13036,7 +13036,7 @@ msgstr ""
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/SendMail.html.ep:8
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/Stats.html.ep:4
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/StudentProgress.html.ep:2
-msgid "You are not authorized to access instructor tools"
+msgid "You are not authorised to access instructor tools"
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/LTIAdvanced.pm:80
@@ -13053,83 +13053,83 @@ msgstr ""
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/SetMaker.html.ep:15
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/UserList.html.ep:14
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/UsersAssignedToSet.html.ep:4
-msgid "You are not authorized to access instructor tools."
+msgid "You are not authorised to access instructor tools."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/Assigner.html.ep:9
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/UsersAssignedToSet.html.ep:9
-msgid "You are not authorized to assign sets."
+msgid "You are not authorised to assign sets."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/CourseAdmin.html.ep:10
-msgid "You are not authorized to create or delete courses."
+msgid "You are not authorised to create or delete courses."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/AchievementEditor.html.ep:11
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/AchievementList.html.ep:10
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/AchievementNotificationEditor.html.ep:11
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/AchievementUserEditor.html.ep:2
-msgid "You are not authorized to edit achievements."
+msgid "You are not authorised to edit achievements."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/UserDetail.html.ep:31
-msgid "You are not authorized to edit user specific information."
+msgid "You are not authorised to edit user specific information."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/ProblemGrader.html.ep:37
-msgid "You are not authorized to grade assignments."
+msgid "You are not authorised to grade assignments."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/FileManager.html.ep:8
-msgid "You are not authorized to manage course files"
+msgid "You are not authorised to manage course files"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/PGProblemEditor.html.ep:27
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/ProblemSetDetail.html.ep:39
-msgid "You are not authorized to modify problems."
+msgid "You are not authorised to modify problems."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/ProblemSetList.html.ep:41
-msgid "You are not authorized to modify set definition files."
+msgid "You are not authorised to modify set definition files."
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/LTIAdvanced.pm:84
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/LTIAdvantage.pm:220
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/ProblemSetList.html.ep:35
-msgid "You are not authorized to modify sets."
+msgid "You are not authorised to modify sets."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/UserList.html.ep:18
-msgid "You are not authorized to modify student data"
+msgid "You are not authorised to modify student data"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/AddUsers.html.ep:11
-msgid "You are not authorized to modify student data."
+msgid "You are not authorised to modify student data."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/Config.html.ep:10
-msgid "You are not authorized to modify the course configuration."
+msgid "You are not authorised to modify the course configuration."
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetList.pm:248
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/UserList.pm:226
-msgid "You are not authorized to perform this action."
+msgid "You are not authorised to perform this action."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/Scoring.html.ep:12
-msgid "You are not authorized to score sets."
+msgid "You are not authorised to score sets."
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/SendMail.html.ep:13
-msgid "You are not authorized to send mail to students"
+msgid "You are not authorised to send mail to students"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/LTIUpdate.html.ep:12
-msgid "You are not authorized to update lti scores"
+msgid "You are not authorised to update lti scores"
 msgstr ""
 
 #: /opt/webwork/webwork2/templates/ContentGenerator/Instructor/ShowAnswers.html.ep:2
-msgid "You are not authorized to view past answers"
+msgid "You are not authorised to view past answers"
 msgstr ""
 
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Hardcopy.pm:255
@@ -13519,7 +13519,7 @@ msgstr ""
 #: /opt/webwork/webwork2/lib/WeBWorK/ContentGenerator/Instructor/ProblemSetDetail.pm:335
 msgid ""
 "You may set a time interval in minutes.  Within this time interval, students "
-"may start new randomized versions of the test.  However they may only start "
+"may start new randomised versions of the test.  However they may only start "
 "as many new versions as you set for \"Versions per Interval\".  When the "
 "time interval ends, the cap is reset.  This feature is intended to allow "
 "students an immediate retake, but require them to take a break (and perhaps "
