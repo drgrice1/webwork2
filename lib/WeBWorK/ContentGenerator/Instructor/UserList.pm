@@ -609,7 +609,10 @@ sub save_edit_handler ($c) {
 		if ($c->param("user.${userID}.password_delete")) {
 			# Note that if the user has setup two factor authentication, then this also will delete the otp_secret.
 			# Thus if the password is set again later, the user will need to setup two factor authentication again.
-			$db->deletePassword($User->user_id) if $db->existsPassword($User->user_id);
+			if ($db->existsPassword($User->user_id)) {
+				$db->deletePassword($User->user_id);
+				$c->authen->invalidate_sessions($User->user_id);
+			}
 		} else {
 			my $newPassword       = $c->param("user.${userID}.password");
 			my $mustResetPassword = $c->param("user.${userID}.password_must_reset") ? 1 : 0;
@@ -628,6 +631,7 @@ sub save_edit_handler ($c) {
 					$Password->must_reset_password($mustResetPassword);
 					eval { $db->addPassword($Password) };
 				}
+				$c->authen->invalidate_sessions($User->user_id);
 			} else {
 				# No new password was typed, but the "prompt to reset password" checkbox may have changed for an
 				# existing password.

@@ -907,6 +907,30 @@ sub change_session_key {
 	return;
 }
 
+=head2 invalidate_sessions
+
+Usage: C<< $authen->invalidate_sessions($userID) >>
+
+Invalidate any existing sessions for the user with the given C<$userID>. This
+should be called when the password for the user is changed. If C<$userID> is the
+current user, then the session key is changed via C<change_session_key> so that
+the current browser remains signed in. Otherwise the session for the user is
+deleted from the database.
+
+=cut
+
+sub invalidate_sessions {
+	my ($self, $userID) = @_;
+
+	if ($userID eq $self->{user_id}) {
+		$self->change_session_key;
+	} else {
+		eval { $self->{c}->db->deleteKey($userID) };
+	}
+
+	return;
+}
+
 =head2 session
 
 This method can be used to get or set values in the session. Note that if
