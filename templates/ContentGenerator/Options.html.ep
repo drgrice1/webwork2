@@ -111,6 +111,22 @@
 							autocomplete => 'new-password' =%>
 					</div>
 				</div>
+				% if ($c->{otp_required}) {
+					<div class="row mb-2">
+						<%= label_for
+							otp_code => maketext('One-time code from authenticator app'),
+							class    => 'col-form-label col-sm-6' =%>
+						<div class="col-sm-6">
+							<%= text_field
+								otp_code       => '',
+								id             => 'otp_code',
+								class          => 'form-control',
+								autocomplete   => 'off',
+								autocapitalize => 'none',
+								spellcheck     => 'false' =%>
+						</div>
+					</div>
+				% }
 			</div>
 		</div>
 	% }
