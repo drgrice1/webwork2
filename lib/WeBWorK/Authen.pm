@@ -856,13 +856,11 @@ sub unexpired_session_exists {
 sub create_session {
 	my ($self, $userID) = @_;
 	my $c  = $self->{c};
-	my $ce = $c->ce;
 	my $db = $c->db;
 	my $newKey;
 
 	if (!$c->stash->{'webwork2.database_session'} || !$c->stash->{'webwork2.database_session'}{user_id}) {
-		my @chars = @{ $ce->{sessionKeyChars} };
-		$newKey = join('', @chars[ map { irand(@chars) } 1 .. $ce->{sessionKeyLength} ]);
+		$newKey = $self->generate_session_key;
 		$c->stash->{'webwork2.database_session'} =
 			{ user_id => $userID, key => $newKey, timestamp => time, session => {} };
 	} else {
@@ -874,6 +872,39 @@ sub create_session {
 		if $c->stash->{setID} && !$c->authz->hasPermissions($userID, 'navigation_allowed');
 
 	return $newKey;
+}
+
+sub generate_session_key {
+	my $self  = shift;
+	my $ce    = $self->{c}->ce;
+	my @chars = @{ $ce->{sessionKeyChars} };
+	return join('', @chars[ map { irand(@chars) } 1 .. $ce->{sessionKeyLength} ]);
+}
+
+=head2 change_session_key
+
+Replace the key of the current session with a newly generated random key. The
+session data and timestamp are retained. Since only one key is stored in the
+database for a user, this invalidates the session for any other browser that is
+signed in as this user. The key is updated in the request parameters and in the
+session cookie so that the current browser remains signed in. The new key is
+saved to the database when C<store_session> is called after the request is
+dispatched.
+
+=cut
+
+sub change_session_key {
+	my $self    = shift;
+	my $c       = $self->{c};
+	my $session = $c->stash->{'webwork2.database_session'};
+
+	return unless $session && $session->{user_id};
+
+	$session->{key} = $self->{session_key} = $self->generate_session_key;
+	$c->param('key', $self->{session_key});
+	$c->session(key => $self->{session_key}) if !$c->stash('disable_cookies') && $c->session->{key};
+
+	return;
 }
 
 =head2 session
@@ -993,7 +1024,9 @@ sub store_session {
 			eval { $db->putKey($key) };
 			warn "Couldn't put key for userid $session->{user_id} either: $@" if $@;
 		}
-	} elsif ($self->{user_id}) {
+	} elsif ($self->{session_killed} && $self->{user_id}) {
+		# Only delete the session in the database if the session was intentionally ended.  Otherwise a request
+		# with an invalid key or password would end a valid session for the user in another browser.
 		debug('Deleting database session.');
 		eval { $db->deleteKey($self->{user_id}) };
 	}
@@ -1069,6 +1102,7 @@ sub killSession {
 	$self->forget_verification;
 	$self->killCookie;
 	delete $c->stash->{'webwork2.database_session'};
+	$self->{session_killed} = 1;
 
 	return;
 }

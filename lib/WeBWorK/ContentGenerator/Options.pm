@@ -12,6 +12,15 @@ use Mojo::Util qw(xml_escape);
 use WeBWorK::Utils qw(cryptPassword utf8Crypt isValidEmailAddress);
 use WeBWorK::Localize;
 
+sub invalidateSession ($c) {
+	if ($c->{user}->user_id eq $c->{effectiveUser}->user_id) {
+		$c->authen->change_session_key;
+	} else {
+		eval { $c->db->deleteKey($c->{effectiveUser}->user_id) };
+	}
+	return;
+}
+
 sub page_title ($c) {
 	return $c->maketext("Account settings for [_1]", $c->param('effectiveUser'));
 }
@@ -61,6 +70,7 @@ sub initialize ($c) {
 						} else {
 							$c->addgoodmessage(
 								$c->maketext("[_1]'s password has been changed.", xml_escape($e_user_name)));
+							$c->invalidateSession;
 						}
 					} else {
 						$effectiveUserPassword->password(cryptPassword($newP));
@@ -75,6 +85,7 @@ sub initialize ($c) {
 						} else {
 							$c->addgoodmessage(
 								$c->maketext("[_1]'s password has been changed.", xml_escape($e_user_name)));
+							$c->invalidateSession;
 						}
 					}
 				} else {
