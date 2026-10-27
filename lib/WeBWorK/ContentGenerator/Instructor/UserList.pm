@@ -595,7 +595,9 @@ sub save_edit_handler ($c) {
 		$db->putPermissionLevel($PermissionLevel);
 		$User->{permission} = $PermissionLevel->permission;
 
-		if ($c->param("user.${userID}.password_delete")) {
+		if ($userID eq $c->param('user')) {
+			# Users may not change or delete their own password here.
+		} elsif ($c->param("user.${userID}.password_delete")) {
 			# Note that if the user has setup two factor authentication, then this also will delete the otp_secret.
 			# Thus if the password is set again later, the user will need to setup two factor authentication again.
 			if ($db->existsPassword($User->user_id)) {

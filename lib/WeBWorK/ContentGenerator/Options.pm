@@ -8,6 +8,7 @@ WeBWorK::ContentGenerator::Options - Change user options.
 =cut
 
 use WeBWorK::Utils qw(cryptPassword utf8Crypt);
+use WeBWorK::Utils::TOTP;
 use WeBWorK::Localize;
 
 sub page_title ($c) {
@@ -36,6 +37,16 @@ sub initialize ($c) {
 		# Note that it is ok if the password doesn't exist because students might be setting it for the first time.
 		my $password = eval { $db->getPassword($c->{user}->user_id) };
 
+		# If a user is changing their own password and two factor authentication is set up for the user, then a one-time
+		# security code from their authenticator app is required.
+		$c->{otp_required} =
+			$userID eq $effectiveUserID
+			&& !$c->authen->{external_auth}
+			&& $c->ce->two_factor_authentication_enabled
+			&& $authz->hasPermissions($userID, 'use_two_factor_auth')
+			&& $password
+			&& $password->otp_secret;
+
 		if ($changeOptions && ($newP || $confirmP)) {
 			my $effectiveUserPassword =
 				$userID ne $effectiveUserID ? eval { $db->getPassword($c->{effectiveUser}->user_id) } : $password;
@@ -44,7 +55,16 @@ sub initialize ($c) {
 			if (!defined $password || utf8Crypt($currP // '', $password->password) eq $password->password) {
 				my $e_user_name = $c->{effectiveUser}->first_name . ' ' . $c->{effectiveUser}->last_name;
 				if ($newP eq $confirmP) {
-					if (!defined $effectiveUserPassword) {
+					my $otpCode = ($c->param('otp_code') // '') =~ s/(^\s+|\s+$)//gr;
+					if ($c->{otp_required} && !$otpCode) {
+						$c->addbadmessage(
+							$c->maketext('You must enter the security code from your authenticator app.'));
+					} elsif ($c->{otp_required}
+						&& !WeBWorK::Utils::TOTP->new(secret => $password->otp_secret, tolerance => 1)
+						->validate_otp($otpCode))
+					{
+						$c->addbadmessage($c->maketext('You have entered an invalid one-time security code.'));
+					} elsif (!defined $effectiveUserPassword) {
 						$effectiveUserPassword = $db->newPassword();
 						$effectiveUserPassword->user_id($c->{effectiveUser}->user_id);
 						$effectiveUserPassword->password(cryptPassword($newP));
