@@ -10,15 +10,6 @@ WeBWorK::ContentGenerator::Options - Change user options.
 use WeBWorK::Utils qw(cryptPassword utf8Crypt);
 use WeBWorK::Localize;
 
-sub invalidateSession ($c) {
-	if ($c->{user}->user_id eq $c->{effectiveUser}->user_id) {
-		$c->authen->change_session_key;
-	} else {
-		eval { $c->db->deleteKey($c->{effectiveUser}->user_id) };
-	}
-	return;
-}
-
 sub page_title ($c) {
 	return $c->maketext("Account settings for [_1]", $c->param('effectiveUser'));
 }
@@ -66,7 +57,7 @@ sub initialize ($c) {
 							));
 						} else {
 							$c->addgoodmessage($c->maketext("[_1]'s password has been changed.", $e_user_name));
-							$c->invalidateSession;
+							$c->authen->invalidate_sessions($c->{effectiveUser}->user_id);
 						}
 					} else {
 						$effectiveUserPassword->password(cryptPassword($newP));
@@ -79,7 +70,7 @@ sub initialize ($c) {
 							));
 						} else {
 							$c->addgoodmessage($c->maketext("[_1]'s password has been changed.", $e_user_name));
-							$c->invalidateSession;
+							$c->authen->invalidate_sessions($c->{effectiveUser}->user_id);
 						}
 					}
 				} else {
